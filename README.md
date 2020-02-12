@@ -7,7 +7,8 @@ Animated background behind the active menu item.
 * Tracking the active item and position the background behind it
 
 ## ToDo
-* Add content to show scroll behaviour
+* Some kind of menu transition when scolling down (hide, darken, etc)
+* Add page transitions
 * ActiveStyle: bg, underline
 * Position: top, side (rtl)
 * Tanslucent: true, false

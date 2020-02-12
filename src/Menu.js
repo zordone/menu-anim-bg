@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { NavLink, withRouter } from 'react-router-dom';
 
 const MenuBar = styled.div`
-  background: linear-gradient(0deg, transparent, #0004);
+  position: fixed;
+  width: 100%;
+  padding-bottom;
+  background: linear-gradient(0deg, transparent, #000C);
   user-select: none;
 `;
 
@@ -15,7 +18,6 @@ const MenuNav = styled.nav`
 
 const MenuItemLink = styled(NavLink)`
   position: relative;
-  font-size: 15px;
   text-transform: uppercase;
   color: white;
   text-decoration: none;
@@ -23,10 +25,11 @@ const MenuItemLink = styled(NavLink)`
   display: inline-block;
   text-align: center;
   padding: 2rem 1rem;
-  text-shadow: 1px 1px 3px black;
-  opacity: 0.5;
+  text-shadow: 1px 1px 2px #000, 2px 2px 5px #0008;
+  opacity: 0.7;
   transition: opacity 200ms;  
-  &.active {
+  &.active,
+  &:hover {
     opacity: 1;
   }
 `;
@@ -52,7 +55,7 @@ const Menu = ({ items, location }) => {
   useEffect(() => {
     const activeIndex = items.findIndex(item => item.path === location.pathname);
     if (activeIndex === -1) {
-      console.warn('activeIndex = -1', items, location.pathname)
+      console.warn('Active menu item not found:', location.pathname)
       return;
     }
     const activeItem = itemsRef.current[activeIndex];

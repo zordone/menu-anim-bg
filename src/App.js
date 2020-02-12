@@ -1,13 +1,14 @@
 import React from 'react';
 import Menu from './Menu';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Page from './Page';
 
 const PAGES = [
   { id: 'home', title: 'Home', path: '/' },
   { id: 'about', title: 'About', path: '/about' },
   { id: 'blog', title: 'Blog', path: '/blog' },
   { id: 'portfolio', title: 'Portfolio', path: '/portfolio' },
-  { id: 'conttact', title: 'Contact', path: '/contact' }
+  { id: 'contact', title: 'Contact', path: '/contact' }
 ];
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <Switch>
           {PAGES.map(({ id,  title, path }) => (
             <Route key={id} exact path={path}>
-              <h1>{title}</h1>
+              <Page {...{ id, title }} />
             </Route>
           ))}
         </Switch>
