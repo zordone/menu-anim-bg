@@ -17,7 +17,7 @@ function App() {
       <div className="App">
         <Menu items={PAGES}></Menu>
         <Switch>
-          {PAGES.map(({ id,  title, path }) => (
+          {PAGES.map(({ id, title, path }) => (
             <Route key={id} exact path={path}>
               <Page {...{ id, title }} />
             </Route>

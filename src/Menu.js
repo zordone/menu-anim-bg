@@ -27,7 +27,7 @@ const MenuItemLink = styled(NavLink)`
   padding: 2rem 1rem;
   text-shadow: 1px 1px 2px #000, 2px 2px 5px #0008;
   opacity: 0.7;
-  transition: opacity 200ms;  
+  transition: opacity 200ms;
   &.active,
   &:hover {
     opacity: 1;
@@ -40,7 +40,7 @@ const MenuItemBg = styled.div`
   bottom: 0;
   width: 0;
   background: #1a8dbc;
-  pointer-events: none;  
+  pointer-events: none;
   transition: all 300ms ease;
 `;
 
@@ -53,30 +53,37 @@ const Menu = ({ items, location }) => {
   }, [items]);
 
   useEffect(() => {
-    const activeIndex = items.findIndex(item => item.path === location.pathname);
+    const activeIndex = items.findIndex(
+      item => item.path === location.pathname
+    );
     if (activeIndex === -1) {
-      console.warn('Active menu item not found:', location.pathname)
+      console.warn('Active menu item not found:', location.pathname);
       return;
     }
     const activeItem = itemsRef.current[activeIndex];
     const { offsetLeft, offsetWidth } = activeItem;
     const bgStyle = bgRef.current.style;
     bgStyle.left = `${offsetLeft}px`;
-    bgStyle.width = `${offsetWidth}px`;    
+    bgStyle.width = `${offsetWidth}px`;
   }, [items, location]);
 
   return (
     <MenuBar>
       <MenuNav>
         <MenuItemBg ref={bgRef} />
-        {items.map(({ id, title, path }, index) => 
-          <MenuItemLink key={id} to={path} exact ref={el => itemsRef.current[index] = el}>
+        {items.map(({ id, title, path }, index) => (
+          <MenuItemLink
+            key={id}
+            to={path}
+            exact
+            ref={el => (itemsRef.current[index] = el)}
+          >
             {title}
           </MenuItemLink>
-        )}
+        ))}
       </MenuNav>
     </MenuBar>
   );
-}
+};
 
 export default withRouter(Menu);
